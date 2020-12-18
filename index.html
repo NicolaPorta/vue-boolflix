@@ -51,7 +51,8 @@
     <main>
       <ul>
         <li v-for="film in films" @mouseenter="visibility = true" @mouseleave="visibility = false">
-          <img :src="'https://image.tmdb.org/t/p/w220_and_h330_face/'+ film.poster_path" :alt="film.title">
+          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face/'+ film.poster_path" :alt="film.title">
+          <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div v-if="visibility" class="info">
             <div class="container">
               <h5>Titolo:</h5>
