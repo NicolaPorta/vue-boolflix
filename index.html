@@ -22,77 +22,14 @@
     <header>
       <div class="logo">Boolflix</div>
       <div class="search">
-        <input type="text" placeholder="Cerca...">
-        <button type="button" name="button"><i class="fas fa-arrow-right"></i></button>
+        <input type="text" placeholder="Cerca..." v-model="searchInput">
+        <button type="button" name="button"><i class="fas fa-arrow-right" @click="searchFilm"></i></button>
       </div>
     </header>
     <main>
       <ul>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
-          <div class="info">
-            <h5>Titolo:</h5>
-            <h5>Titolo Originale:</h5>
-            <h5>Voto:</h5>
-            <h5>Overview:</h5>
-          </div>
-        </li>
-        <li>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Steve_Harvey_Miss_Universe_2016.jpg/220px-Steve_Harvey_Miss_Universe_2016.jpg" alt="IMG">
+        <li v-for="film in films">
+          <img src="" alt="IMG">
           <div class="info">
             <h5>Titolo:</h5>
             <h5>Titolo Originale:</h5>
