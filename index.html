@@ -43,10 +43,9 @@
           </li>
         </ul>
       </nav>
-
       <div class="search">
         <input type="text" placeholder="Cerca..." v-model="searchInput">
-        <button type="button" name="button"><i class="fas fa-search"></i></button>
+        <button type="button" name="button" @click="searchFilm"><i class="fas fa-search"></i></button>
       </div>
     </header>
     <main>
@@ -61,6 +60,10 @@
             <div class="container">
               <h5>Titolo Originale:</h5>
               <span>{{film.original_title}}</span>
+            </div>
+            <div class="container">
+              <h5>Lingua:</h5>
+              <span>{{film.original_language}}</span>
             </div>
             <div class="container">
               <h5>Voto:</h5><i class="fas fa-star"></i>

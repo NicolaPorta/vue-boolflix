@@ -15,7 +15,7 @@ var app = new Vue(
             params: {
               api_key: this.apiId,
               query: this.searchInput,
-              linguages: "it-IT"
+              language: "it-IT"
             }
           }).then(
             (response) => {
@@ -23,7 +23,8 @@ var app = new Vue(
             }
           );
         }
-      }
+      },
+
     }
   }
 );
