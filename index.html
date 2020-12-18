@@ -68,7 +68,7 @@
             <div class="container">
               <h5>Voto:</h5><i class="fas fa-star"></i>
             </div>
-            <div class="container">
+            <div v-if="film.overview !== ''" class="container">
               <h5>Overview:</h5>
               <span>{{film.overview}}</span>
             </div>
