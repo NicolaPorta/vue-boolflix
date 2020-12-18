@@ -57,7 +57,7 @@
               <h5>Titolo:</h5>
               <span>{{film.title}}</span>
             </div>
-            <div class="container">
+            <div class="container" v-if="film.original_title != film.title">
               <h5>Titolo Originale:</h5>
               <span>{{film.original_title}}</span>
             </div>

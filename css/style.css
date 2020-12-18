@@ -26,7 +26,7 @@ a:hover {
 
 .container {
   padding: 5px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .container h5 {
@@ -143,8 +143,8 @@ main ul {
 }
 
 main li {
-  width: 220px;
-  height: 330px;
+  width: 342px;
+  height: 513px;
   background-color: black;
   position: relative;
   margin: 30px;
