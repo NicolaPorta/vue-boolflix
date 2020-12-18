@@ -14,6 +14,25 @@ body {
   height: 100vh;
 }
 
+.container {
+  padding: 5px;
+  font-size: 13px;
+}
+
+.container h5 {
+  display: inline-block;
+  font-size: 15px;
+}
+
+.fas.fa-star {
+  color: gold;
+  margin-left: 4px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 header {
   height: 80px;
   width: 100%;
@@ -81,6 +100,8 @@ li {
   border: 1px solid lightgrey;
   margin: 30px;
   cursor: pointer;
+  color: white;
+  overflow-y: auto;
 }
 
 li img {
@@ -95,7 +116,6 @@ li:hover img {
 
 li .info {
   opacity: 0;
-  color: white;
   transition: all .7s;
   padding: 40px 20px;
 }

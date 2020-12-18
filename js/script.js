@@ -2,6 +2,7 @@ var app = new Vue(
   {
     el: "#root",
     data: {
+      visibility: false,
       apiId: "12d47eadb7bade3dfdef75db545e889f",
       searchInput: "",
       films:[]
@@ -22,7 +23,6 @@ var app = new Vue(
             }
           );
         }
-
       }
     }
   }
