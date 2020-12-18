@@ -20,7 +20,30 @@
 <body>
   <div id="root">
     <header>
-      <div class="logo">Boolflix</div>
+      <nav>
+        <div class="logo">Boolflix</div>
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Film</a>
+          </li>
+          <li>
+            <a href="#">Serie</a>
+          </li>
+          <li>
+            <a href="#">Documentari</a>
+          </li>
+          <li>
+            <a href="#">Contatti</a>
+          </li>
+          <li>
+            <a href="#">FAQ</a>
+          </li>
+        </ul>
+      </nav>
+
       <div class="search">
         <input type="text" placeholder="Cerca..." v-model="searchInput">
         <button type="button" name="button"><i class="fas fa-arrow-right" @click="searchFilm"></i></button>
