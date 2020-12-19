@@ -88,7 +88,10 @@
         Risultati: {{sources.total_results}}
       </div>
       <div class="">
-        Pagina<i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>{{sources.page}} di {{sources.total_pages}} <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
+        <span>Pagina</span>
+        <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
+        <span>{{sources.page}} di {{sources.total_pages}}</span>
+        <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
       </div>
     </div>
   </div>
