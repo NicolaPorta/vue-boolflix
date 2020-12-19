@@ -83,15 +83,17 @@
         </li>
       </ul>
     </main>
-    <div v-if="films.length > 0" class= page style="color:white; text-align:center;">
-      <div class="">
+    <div v-if="films.length > 0" class= result style="color:white; text-align:center;">
+      <div>
         Risultati: {{sources.total_results}}
       </div>
-      <div class="">
+      <div class="page">
         <span>Pagina</span>
-        <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
-        <span>{{sources.page}} di {{sources.total_pages}}</span>
-        <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
+        <div class="numberpage">
+          <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
+          <span>{{sources.page}} di {{sources.total_pages}}</span>
+          <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
+        </div>
       </div>
     </div>
   </div>
