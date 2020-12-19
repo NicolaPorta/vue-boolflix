@@ -50,10 +50,10 @@
     </header>
     <main>
       <ul>
-        <li v-for="film in films" @mouseenter="visibility = true" @mouseleave="visibility = false">
+        <li v-for="film in films">
           <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face/'+ film.poster_path" :alt="film.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
-          <div v-if="visibility" class="info">
+          <div class="info">
             <div class="container">
               <h5>Titolo:</h5>
               <span>{{film.title}}</span>
@@ -67,7 +67,13 @@
               <span>{{film.original_language}}</span>
             </div>
             <div class="container">
-              <h5>Voto:</h5><i class="fas fa-star"></i>
+              <h5>Voto:</h5>
+              <i v-if="film.vote_average < 2" class="far fa-star"></i>
+              <i v-if="film.vote_average >= 2" class="fas fa-star"></i>
+              <i v-if="film.vote_average >= 4" class="fas fa-star"></i>
+              <i v-if="film.vote_average >= 6" class="fas fa-star"></i>
+              <i v-if="film.vote_average >= 8" class="fas fa-star"></i>
+              <i v-if="film.vote_average == 10" class="fas fa-star"></i>
             </div>
             <div v-if="film.overview !== ''" class="container">
               <h5>Overview:</h5>
@@ -77,6 +83,14 @@
         </li>
       </ul>
     </main>
+    <div v-if="films.length > 0" class= page style="color:white; text-align:center;">
+      <div class="">
+        Risultati: {{sources.total_results}}
+      </div>
+      <div class="">
+        Pagina<i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>{{sources.page}} di {{sources.total_pages}} <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
+      </div>
+    </div>
   </div>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
