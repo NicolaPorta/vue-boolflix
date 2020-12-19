@@ -85,15 +85,15 @@
     </main>
     <div v-if="films.length > 0" class= result style="color:white; text-align:center;">
       <div>
-        Risultati: {{sources.total_results}}
+        <span>Risultati: {{sources.total_results}}</span>
+        <div class="infoPage">
+          <span>Pagina</span>
+          <span>{{sources.page}} di {{sources.total_pages}}</span>
+        </div>
       </div>
       <div class="page">
-        <span>Pagina</span>
-        <div class="numberpage">
-          <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
-          <span>{{sources.page}} di {{sources.total_pages}}</span>
-          <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
-        </div>
+        <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
+        <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
       </div>
     </div>
   </div>
