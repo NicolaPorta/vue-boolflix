@@ -193,6 +193,8 @@ li:hover .info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: black;
+  padding: 20px;
 }
 
 .page {
