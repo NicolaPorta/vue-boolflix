@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
@@ -68,12 +70,10 @@
             </div>
             <div class="container">
               <h5>Voto:</h5>
-              <i v-if="film.vote_average < 2" class="far fa-star"></i>
-              <i v-if="film.vote_average >= 2" class="fas fa-star"></i>
-              <i v-if="film.vote_average >= 4" class="fas fa-star"></i>
-              <i v-if="film.vote_average >= 6" class="fas fa-star"></i>
-              <i v-if="film.vote_average >= 8" class="fas fa-star"></i>
-              <i v-if="film.vote_average == 10" class="fas fa-star"></i>
+              <span class="rating">
+                <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </span>
             </div>
             <div v-if="film.overview !== ''" class="container">
               <h5>Overview:</h5>

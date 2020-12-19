@@ -6,7 +6,8 @@ var app = new Vue(
       searchInput: "",
       films:[],
       sources:"",
-      change: 1
+      change: 1,
+      star:""
     },
     methods: {
       searchFilm: function() {

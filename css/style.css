@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Oswald', sans-serif;
   height: 100vh;
   width: 100%;
   background-image: url("https://authors.appadvice.com/wp-content/appadvice-v2-media/2016/11/Netflix-background_860c8ece6b34fb4f43af02255ca8f225.jpg");
@@ -25,6 +25,20 @@ a {
 
 a:hover {
   color: #DC0510;
+}
+
+.rating {
+  color: grey;
+  font-size: 20px;
+  position: relative;
+}
+
+.full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow-x: hidden;
 }
 
 .container {
@@ -91,7 +105,7 @@ header button {
 
 header input {
   font-size: 15px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Oswald', sans-serif;
   padding: 5px 10px;
   transition: all .5s;
   text-transform: capitalize;
