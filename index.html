@@ -47,52 +47,55 @@
       </nav>
       <div class="search">
         <input type="text" placeholder="Cerca..." v-model="searchInput">
-        <button type="button" name="button" @click="searchFilm"><i class="fas fa-search"></i></button>
+        <button type="button" name="button" @click="searchVideo"><i class="fas fa-search"></i></button>
       </div>
     </header>
     <main>
       <ul>
-        <li v-for="film in films">
-          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" :alt="film.title">
+        <li v-for="video in allVideos">
+          <img v-if="video.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ video.poster_path" :alt="video.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div class="info">
             <div class="container title">
               <h5>Titolo:</h5>
-              <span>{{film.title}}</span>
+              <span v-if="video.title">{{video.title}}</span>
+              <span v-else>{{video.name}}</span>
             </div>
-            <div class="container original" v-if="film.original_title != film.title">
+            <div class="container original">
               <h5>Titolo Originale:</h5>
-              <span>{{film.original_title}}</span>
+              <span v-if="video.original_title">{{video.original_title}}</span>
+              <span v-else>{{video.original_name}}</span>
             </div>
             <div class="container language">
               <h5>Lingua:</h5>
-              <img v-if="film.original_language == 'en'" src="img/en-flag.png" alt="English">
-              <img v-else-if="film.original_language == 'fr'" src="img/fr-flag.png" alt="French">
-              <img v-else-if="film.original_language == 'it'" src="img/it-flag.png" alt="Italian">
-              <span v-else>{{film.original_language}}</span>
+              <img v-if="video.original_language == 'en'" src="img/en-flag.png" alt="English">
+              <img v-else-if="video.original_language == 'fr'" src="img/fr-flag.png" alt="French">
+              <img v-else-if="video.original_language == 'it'" src="img/it-flag.png" alt="Italian">
+              <span v-else>{{video.original_language}}</span>
             </div>
             <div class="container rating">
               <h5>Voto:</h5>
               <span class="rating">
                 <i class="fas fa-star"></i>
-                <i :class="(film.vote_average > 1) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(film.vote_average > 2) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(film.vote_average > 3) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(film.vote_average > 4) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(video.vote_average > 1) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(video.vote_average > 2) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(video.vote_average > 3) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(video.vote_average > 4) ? 'fas fa-star' : 'far fa-star'"></i>
                 <!-- Full-Empty star version -->
                 <!-- <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                 <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
               </span>
             </div>
-            <div v-if="film.overview !== ''" class="container">
+            <div v-if="video.overview !== ''" class="container">
               <h5>Overview:</h5>
-              <span>{{film.overview}}</span>
+              <span>{{video.overview}}</span>
             </div>
           </div>
         </li>
       </ul>
     </main>
-    <div v-if="films.length > 0" class= result style="color:white; text-align:center;">
+    <!-- CHANGE PAGE -->
+    <!-- <div v-if="films.length > 0" class= result style="color:white; text-align:center;">
       <div>
         <span>Risultati: {{sources.total_results}}</span>
         <div class="infoPage">
@@ -104,7 +107,7 @@
         <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
         <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
       </div>
-    </div>
+    </div> -->
   </div>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
