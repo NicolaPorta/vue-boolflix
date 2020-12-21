@@ -93,9 +93,9 @@
               <h5>Overview:</h5>
               <span>{{video.overview}}</span>
             </div>
-            <div class="container cast">
-              <!-- <h5>Attori principali:</h5>
-              <span v-for="cast in video.casts"> {{cast.name}} </span> -->
+            <div class="container cast" v-if="video.casts.length != 0">
+              <h5>Attori principali:</h5>
+              <span v-for="(cast,index) in video.casts" > {{cast.name}} </span>
             </div>
           </div>
         </li>

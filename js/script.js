@@ -79,7 +79,9 @@ var app = new Vue(
             var cast = response.data.cast;
             var casts = [];
             for (var i = 0; i < 5; i++) {
-              casts.push(cast[i]);
+              if (cast[i]) {
+                casts.push(cast[i]);
+              }
             }
             element = {
               ...element,
@@ -101,6 +103,7 @@ var app = new Vue(
             var cast = response.data.cast;
             var casts = [];
             for (var i = 0; i < 5; i++) {
+              if(cast[i])
               casts.push(cast[i]);
             }
             element = {
