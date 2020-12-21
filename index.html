@@ -26,7 +26,10 @@
         <div class="logo">Boolflix</div>
         <ul>
           <li>
-            <a href="#">Home</a>
+            <select v-model="selected">
+              <option value="all">Tutti i generi</option>
+              <option v-for="genre in genres" :value="genre.id">{{genre.name}}</option>
+            </select>
           </li>
           <li>
             <a href="#">Film</a>
@@ -52,7 +55,7 @@
     </header>
     <main>
       <ul>
-        <li v-for="video in allVideos">
+        <li v-for="video in allVideos" v-if="video.genre_ids.includes(selected) || selected == 'all'">
           <img v-if="video.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ video.poster_path" :alt="video.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div class="info">
@@ -86,9 +89,13 @@
                 <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
               </span>
             </div>
-            <div v-if="video.overview !== ''" class="container">
+            <div v-if="video.overview !== ''" class="container overview">
               <h5>Overview:</h5>
               <span>{{video.overview}}</span>
+            </div>
+            <div class="container cast">
+              <!-- <h5>Attori principali:</h5>
+              <span v-for="cast in video.casts"> {{cast.name}} </span> -->
             </div>
           </div>
         </li>

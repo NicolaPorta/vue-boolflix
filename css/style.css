@@ -185,13 +185,13 @@ li:hover > img {
 }
 
 li .info {
-  opacity: 0;
+  display:none;
   transition: all .7s;
   padding: 35px 20px;
 }
 
 li:hover .info {
-  opacity: 1;
+  display:block;
 }
 
 .language img {
