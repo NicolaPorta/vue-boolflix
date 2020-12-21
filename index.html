@@ -56,19 +56,22 @@
           <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" :alt="film.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div class="info">
-            <div class="container">
+            <div class="container title">
               <h5>Titolo:</h5>
               <span>{{film.title}}</span>
             </div>
-            <div class="container" v-if="film.original_title != film.title">
+            <div class="container original" v-if="film.original_title != film.title">
               <h5>Titolo Originale:</h5>
               <span>{{film.original_title}}</span>
             </div>
-            <div class="container">
+            <div class="container language">
               <h5>Lingua:</h5>
-              <span>{{film.original_language}}</span>
+              <img v-if="film.original_language == 'en'" src="img/en-flag.png" alt="English">
+              <img v-else-if="film.original_language == 'fr'" src="img/fr-flag.png" alt="French">
+              <img v-else-if="film.original_language == 'it'" src="img/it-flag.png" alt="Italian">
+              <span v-else>{{film.original_language}}</span>
             </div>
-            <div class="container">
+            <div class="container rating">
               <h5>Voto:</h5>
               <span class="rating">
                 <i class="fas fa-star"></i>
