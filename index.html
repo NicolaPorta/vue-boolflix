@@ -53,7 +53,7 @@
     <main>
       <ul>
         <li v-for="film in films">
-          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face/'+ film.poster_path" :alt="film.title">
+          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" :alt="film.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div class="info">
             <div class="container">
@@ -71,8 +71,14 @@
             <div class="container">
               <h5>Voto:</h5>
               <span class="rating">
-                <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
-                <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <i class="fas fa-star"></i>
+                <i :class="(film.vote_average > 1) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(film.vote_average > 2) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(film.vote_average > 3) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i :class="(film.vote_average > 4) ? 'fas fa-star' : 'far fa-star'"></i>
+                <!-- Full-Empty star version -->
+                <!-- <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+                <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
               </span>
             </div>
             <div v-if="film.overview !== ''" class="container">

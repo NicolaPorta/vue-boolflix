@@ -27,6 +27,7 @@ var app = new Vue(
           (response) => {
             this.sources = response.data;
             this.films = response.data.results;
+            this.roundVote();
           }
         );
       },
@@ -40,6 +41,13 @@ var app = new Vue(
       nextPage: function() {
         this.change++;
         this.ajaxCall();
+      },
+      roundVote: function() {
+        this.films.forEach(
+          (element) => {
+            element.vote_average = Math.ceil(element.vote_average / 2);
+          }
+        );
       }
     }
   }
