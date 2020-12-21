@@ -79,11 +79,7 @@
             <div class="container rating">
               <h5>Voto:</h5>
               <span class="rating">
-                <i class="fas fa-star"></i>
-                <i :class="(video.vote_average > 1) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(video.vote_average > 2) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(video.vote_average > 3) ? 'fas fa-star' : 'far fa-star'"></i>
-                <i :class="(video.vote_average > 4) ? 'fas fa-star' : 'far fa-star'"></i>
+                <i class="fa-star" :class="(video.vote_average >= index) ? 'fas' : 'far'" v-for="(star,index) in stars"></i>
                 <!-- Full-Empty star version -->
                 <!-- <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                 <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
@@ -93,9 +89,13 @@
               <h5>Overview:</h5>
               <span>{{video.overview}}</span>
             </div>
-            <div class="container cast" v-if="video.casts.length != 0">
+            <div class="container cast">
               <h5>Attori principali:</h5>
-              <span v-for="(cast,index) in video.casts" > {{cast.name}} </span>
+              <span v-for="cast in video.casts" > {{cast.name}}  </span>
+            </div>
+            <div class="container genres">
+              <h5>Generi:</h5>
+              <span v-for="genre in video.genre_ids" > {{genre}}  </span>
             </div>
           </div>
         </li>

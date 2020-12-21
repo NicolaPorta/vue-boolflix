@@ -8,13 +8,15 @@ var app = new Vue(
       series:[],
       allVideos:[],
       genres:[],
-      selected:"all"
+      selected:"all",
+      stars: []
       // data CHANGE PAGE
       // sources:"",
       // change: 1,
     },
     mounted: function() {
       this.getGenreList();
+      this.starRating();
     },
     methods: {
       searchVideo: function() {
@@ -32,10 +34,10 @@ var app = new Vue(
           }
         }).then(
           (response) => {
-            // this.sources = response.data;
             this.films = response.data.results;
             this.films.forEach(
               (element,index) => {
+                element.vote_average = Math.ceil(element.vote_average/2);
                 this.getFilmActors(element, index);
               }
             );
@@ -56,6 +58,7 @@ var app = new Vue(
             this.series = response.data.results;
             this.series.forEach(
               (element,index) => {
+                element.vote_average = Math.ceil(element.vote_average/2);
                 this.getTvActors(element, index);
               }
             );
@@ -66,7 +69,7 @@ var app = new Vue(
         this.allVideos.sort(function (a,b) {
           return b.vote_average - a.vote_average;
         });
-        console.log(this.allVideos);
+        // this.cardGenre();
       },
       getFilmActors: function(element, index) {
         axios.get("https://api.themoviedb.org/3/movie/" + element.id + "/credits", {
@@ -116,6 +119,7 @@ var app = new Vue(
         );
       },
       getGenreList: function() {
+        var genres = [];
         axios.get("https://api.themoviedb.org/3/genre/tv/list", {
           params: {
             api_key: this.apiId,
@@ -123,8 +127,42 @@ var app = new Vue(
         }).then(
           (response) => {
             this.genres = response.data.genres;
+            this.genres.forEach((element) => {
+              genres.push(element.id);
+            });
+
+            axios.get("https://api.themoviedb.org/3/genre/movie/list", {
+              params: {
+                api_key: this.apiId,
+              }
+            }).then(
+              (response) => {
+                response.data.genres.forEach(
+                  (element, index) => {
+                    if(!genres.includes(element.id)) {
+                      this.genres.push(element);
+                    }
+                  }
+                );
+                this.genres.sort(function (a,b) {
+                  if (a.name > b.name) {
+                    return 1;
+                  } else if (a.name < b.name) {
+                    return -1;
+                  } else return 0;
+                });
+              }
+            );
           }
         );
+      },
+      starRating: function() {
+        for (var i = 0; i < 5; i++) {
+          this.stars.push(i);
+        }
+      },
+      cardGenre: function() {
+
       }
     },
 
