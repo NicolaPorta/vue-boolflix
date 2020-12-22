@@ -39,6 +39,15 @@ var app = new Vue(
               (element,index) => {
                 element.vote_average = Math.ceil(element.vote_average/2);
                 this.getFilmActors(element, index);
+                element.genre_ids.forEach(
+                  (genre, index) => {
+                    var i = 0;
+                    while(genre != this.genres[i].id) {
+                      i++;
+                    }
+                    element.genre_ids[index] = this.genres[i].name;
+                  }
+                );
               }
             );
             this.ajaxCallSeries();
@@ -60,6 +69,15 @@ var app = new Vue(
               (element,index) => {
                 element.vote_average = Math.ceil(element.vote_average/2);
                 this.getTvActors(element, index);
+                element.genre_ids.forEach(
+                  (genre, index) => {
+                    var i = 0;
+                    while(genre != this.genres[i].id) {
+                      i++;
+                    }
+                    element.genre_ids[index] = this.genres[i].name;
+                  }
+                );
               }
             );
           });
@@ -69,7 +87,6 @@ var app = new Vue(
         this.allVideos.sort(function (a,b) {
           return b.vote_average - a.vote_average;
         });
-        // this.cardGenre();
       },
       getFilmActors: function(element, index) {
         axios.get("https://api.themoviedb.org/3/movie/" + element.id + "/credits", {
@@ -123,6 +140,7 @@ var app = new Vue(
         axios.get("https://api.themoviedb.org/3/genre/tv/list", {
           params: {
             api_key: this.apiId,
+            language: "it-IT"
           }
         }).then(
           (response) => {
@@ -134,6 +152,7 @@ var app = new Vue(
             axios.get("https://api.themoviedb.org/3/genre/movie/list", {
               params: {
                 api_key: this.apiId,
+                language: "it-IT"
               }
             }).then(
               (response) => {
@@ -160,9 +179,6 @@ var app = new Vue(
         for (var i = 0; i < 5; i++) {
           this.stars.push(i);
         }
-      },
-      cardGenre: function() {
-
       }
     },
 

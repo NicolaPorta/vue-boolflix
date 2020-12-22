@@ -224,3 +224,8 @@ li:hover .info {
 .page .fas.fa-chevron-right {
   right: 40%;
 }
+
+.genres span:not(:last-child)::after,
+.cast span:not(:last-child)::after {
+  content: ','
+}

@@ -55,7 +55,7 @@
     </header>
     <main>
       <ul>
-        <li v-for="video in allVideos" v-if="video.genre_ids.includes(selected) || selected == 'all'">
+        <li v-for="(video,index) in allVideos" v-if="video.genre_ids.includes(selected) || selected == 'all'">
           <img v-if="video.poster_path != null" :src="'https://image.tmdb.org/t/p/w342/'+ video.poster_path" :alt="video.title">
           <img v-else src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRMdX846r5jMPJv9IRefptsxkNw2G5N9uiUA&usqp=CAU" alt="">
           <div class="info">
@@ -91,11 +91,11 @@
             </div>
             <div class="container cast">
               <h5>Attori principali:</h5>
-              <span v-for="cast in video.casts" > {{cast.name}}  </span>
+              <span v-for="cast in video.casts" >  {{cast.name}}</span>
             </div>
             <div class="container genres">
               <h5>Generi:</h5>
-              <span v-for="genre in video.genre_ids" > {{genre}}  </span>
+              <span v-for="genre in video.genre_ids"> {{genre}}</span>
             </div>
           </div>
         </li>
