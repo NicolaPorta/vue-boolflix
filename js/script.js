@@ -9,7 +9,8 @@ var app = new Vue(
       allVideos:[],
       genres:[],
       selected:"all",
-      stars: []
+      stars: [],
+      mySrc: ""
       // data CHANGE PAGE
       // sources:"",
       // change: 1,
@@ -85,7 +86,7 @@ var app = new Vue(
       roundVote: function() {
         this.allVideos = this.films.concat(this.series);
         this.allVideos.sort(function (a,b) {
-          return b.vote_average - a.vote_average;
+          return b.popularity - a.popularity;
         });
       },
       getFilmActors: function(element, index) {
@@ -98,11 +99,14 @@ var app = new Vue(
           (response) => {
             var cast = response.data.cast;
             var casts = [];
-            for (var i = 0; i < 5; i++) {
-              if (cast[i]) {
-                casts.push(cast[i]);
+            if (cast.length > 0) {
+              for (var i = 0; i < 5; i++) {
+                if (cast[i]) {
+                  casts.push(cast[i]);
+                }
               }
-            }
+            } else cast = 0;
+
             element = {
               ...element,
               casts
@@ -123,8 +127,7 @@ var app = new Vue(
             var cast = response.data.cast;
             var casts = [];
             for (var i = 0; i < 5; i++) {
-              if(cast[i])
-              casts.push(cast[i]);
+              if(cast[i]) casts.push(cast[i]);
             }
             element = {
               ...element,

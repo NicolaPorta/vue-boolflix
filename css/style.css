@@ -31,6 +31,11 @@ a:hover {
   color: gold;
 }
 
+select {
+  font-family: 'Oswald', sans-serif;
+  outline: none;
+}
+
 /* Full-Empty star Version */
 /* .rating {
   color: grey;

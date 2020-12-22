@@ -28,7 +28,7 @@
           <li>
             <select v-model="selected">
               <option value="all">Tutti i generi</option>
-              <option v-for="genre in genres" :value="genre.id">{{genre.name}}</option>
+              <option v-for="genre in genres" :value="genre.name">{{genre.name}}</option>
             </select>
           </li>
           <li>
@@ -49,8 +49,8 @@
         </ul>
       </nav>
       <div class="search">
-        <input type="text" placeholder="Cerca..." v-model="searchInput">
-        <button type="button" name="button" @click="searchVideo"><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="Cerca..." v-model="searchInput" @keydown.enter="searchVideo">
+        <button type="button" name="button" @click="searchVideo" ><i class="fas fa-search"></i></button>
       </div>
     </header>
     <main>
@@ -79,7 +79,7 @@
             <div class="container rating">
               <h5>Voto:</h5>
               <span class="rating">
-                <i class="fa-star" :class="(video.vote_average >= index) ? 'fas' : 'far'" v-for="(star,index) in stars"></i>
+                <i class="fa-star" :class="(video.vote_average >= stars[index]) ? 'fas' : 'far'" v-for="(star,index) in stars"></i>
                 <!-- Full-Empty star version -->
                 <!-- <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
                 <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
@@ -89,11 +89,11 @@
               <h5>Overview:</h5>
               <span>{{video.overview}}</span>
             </div>
-            <div class="container cast">
+            <div class="container cast" v-if="video.casts != 0">
               <h5>Attori principali:</h5>
               <span v-for="cast in video.casts" >  {{cast.name}}</span>
             </div>
-            <div class="container genres">
+            <div class="container genres" v-if="video.genre_ids.length != 0">
               <h5>Generi:</h5>
               <span v-for="genre in video.genre_ids"> {{genre}}</span>
             </div>
