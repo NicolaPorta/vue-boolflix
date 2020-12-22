@@ -90,11 +90,11 @@
               <span>{{video.overview}}</span>
             </div>
             <div class="container cast" v-if="video.casts != 0">
-              <h5>Attori principali:</h5>
+              <h5>Cast:</h5>
               <span v-for="cast in video.casts" >  {{cast.name}}</span>
             </div>
             <div class="container genres" v-if="video.genre_ids.length != 0">
-              <h5>Generi:</h5>
+              <h5>Genere:</h5>
               <span v-for="genre in video.genre_ids"> {{genre}}</span>
             </div>
           </div>
@@ -113,8 +113,8 @@
       <div class="page">
         <i v-if="sources.page > 1" class="fas fa-chevron-left" @click="prevPage"></i>
         <i v-if =" sources.page < sources.total_pages" class="fas fa-chevron-right" @click="nextPage"></i>
-      </div>
-    </div> -->
+      </div> -->
+    </div>
   </div>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
