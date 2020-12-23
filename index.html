@@ -71,18 +71,16 @@
             </div>
             <div class="container language">
               <h5>Lingua:</h5>
-              <img v-if="video.original_language == 'en'" src="img/en-flag.png" alt="English">
-              <img v-else-if="video.original_language == 'fr'" src="img/fr-flag.png" alt="French">
-              <img v-else-if="video.original_language == 'it'" src="img/it-flag.png" alt="Italian">
+              <img v-if="flags(video) != 0" :src="flags(video)" alt="">
               <span v-else>{{video.original_language}}</span>
             </div>
-            <div class="container rating">
+            <div class="container star-rating">
               <h5>Voto:</h5>
               <span class="rating">
                 <i class="fa-star" :class="(video.vote_average >= stars[index]) ? 'fas' : 'far'" v-for="(star,index) in stars"></i>
                 <!-- Full-Empty star version -->
                 <!-- <span class="empty">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
-                <span class="full" :style="{width: 'calc(100% * (' + film.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
+                <span class="full" :style="{width: 'calc(100% * (' + video.vote_average + '/ 10))'}">&#9733;&#9733;&#9733;&#9733;&#9733;</span> -->
               </span>
             </div>
             <div v-if="video.overview !== ''" class="container overview">

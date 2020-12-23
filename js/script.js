@@ -66,6 +66,7 @@ var app = new Vue(
             );
           });
       },
+      // Movie Cast
       getFilmActors: function(element, index) {
         axios.get("https://api.themoviedb.org/3/movie/" + element.id + "/credits", {
           params: {
@@ -78,6 +79,7 @@ var app = new Vue(
           }
         );
       },
+      // TV Cast
       getTvActors: function(element, index) {
         axios.get("https://api.themoviedb.org/3/tv/" + element.id + "/credits", {
           params: {
@@ -132,6 +134,7 @@ var app = new Vue(
           }
         );
       },
+      // genre in card
       stampGenre: function(element) {
         element.genre_ids.forEach(
           (genre, index) => {
@@ -143,6 +146,7 @@ var app = new Vue(
           }
         );
       },
+      // Cast in card
       stampCast: function(array, response, element, index) {
         var cast = response.data.cast;
         var casts = [];
@@ -165,6 +169,21 @@ var app = new Vue(
       starRating: function(max_vote) {
         for (var i = 0; i < max_vote; i++) {
           this.stars.push(i);
+        }
+      },
+      flags: function(element) {
+        switch(element.original_language) {
+          case 'en':
+            return "img/en-flag.png";
+            break;
+          case 'it':
+            return "img/it-flag.png";
+            break;
+          case 'fr':
+            return "img/fr-flag.png";
+            break;
+          default:
+            return 0;
         }
       }
     },
