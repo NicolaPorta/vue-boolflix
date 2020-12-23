@@ -9,15 +9,14 @@ var app = new Vue(
       allVideos:[],
       genres:[],
       selected:"all",
-      stars: [],
-      mySrc: ""
+      stars: []
       // data CHANGE PAGE
       // sources:"",
       // change: 1,
     },
     mounted: function() {
       this.getGenreList();
-      this.starRating();
+      this.starRating(5);
     },
     methods: {
       searchVideo: function() {
@@ -40,15 +39,7 @@ var app = new Vue(
               (element,index) => {
                 element.vote_average = Math.ceil(element.vote_average/2);
                 this.getFilmActors(element, index);
-                element.genre_ids.forEach(
-                  (genre, index) => {
-                    var i = 0;
-                    while(genre != this.genres[i].id) {
-                      i++;
-                    }
-                    element.genre_ids[index] = this.genres[i].name;
-                  }
-                );
+                this.stampGenre(element);
               }
             );
             this.ajaxCallSeries();
@@ -70,24 +61,10 @@ var app = new Vue(
               (element,index) => {
                 element.vote_average = Math.ceil(element.vote_average/2);
                 this.getTvActors(element, index);
-                element.genre_ids.forEach(
-                  (genre, index) => {
-                    var i = 0;
-                    while(genre != this.genres[i].id) {
-                      i++;
-                    }
-                    element.genre_ids[index] = this.genres[i].name;
-                  }
-                );
+                this.stampGenre(element);
               }
             );
           });
-      },
-      roundVote: function() {
-        this.allVideos = this.films.concat(this.series);
-        this.allVideos.sort(function (a,b) {
-          return b.popularity - a.popularity;
-        });
       },
       getFilmActors: function(element, index) {
         axios.get("https://api.themoviedb.org/3/movie/" + element.id + "/credits", {
@@ -97,22 +74,7 @@ var app = new Vue(
           }
         }).then(
           (response) => {
-            var cast = response.data.cast;
-            var casts = [];
-            if (cast.length > 0) {
-              for (var i = 0; i < 5; i++) {
-                if (cast[i]) {
-                  casts.push(cast[i]);
-                }
-              }
-            } else cast = 0;
-
-            element = {
-              ...element,
-              casts
-            };
-            this.films[index] = element;
-            this.roundVote();
+            this.stampCast(this.films, response, element, index);
           }
         );
       },
@@ -124,20 +86,11 @@ var app = new Vue(
           }
         }).then(
           (response) => {
-            var cast = response.data.cast;
-            var casts = [];
-            for (var i = 0; i < 5; i++) {
-              if(cast[i]) casts.push(cast[i]);
-            }
-            element = {
-              ...element,
-              casts
-            };
-            this.series[index] = element;
-            this.roundVote();
+            this.stampCast(this.series, response, element, index);
           }
         );
       },
+      // server call for genre list complete
       getGenreList: function() {
         var genres = [];
         axios.get("https://api.themoviedb.org/3/genre/tv/list", {
@@ -162,6 +115,7 @@ var app = new Vue(
                 response.data.genres.forEach(
                   (element, index) => {
                     if(!genres.includes(element.id)) {
+                      element.name = element.name + ' (Film)';
                       this.genres.push(element);
                     }
                   }
@@ -178,8 +132,38 @@ var app = new Vue(
           }
         );
       },
-      starRating: function() {
+      stampGenre: function(element) {
+        element.genre_ids.forEach(
+          (genre, index) => {
+            var i = 0;
+            while(genre != this.genres[i].id) {
+              i++;
+            }
+            element.genre_ids[index] = this.genres[i].name;
+          }
+        );
+      },
+      stampCast: function(array, response, element, index) {
+        var cast = response.data.cast;
+        var casts = [];
         for (var i = 0; i < 5; i++) {
+          if(cast[i]) casts.push(cast[i]);
+        }
+        element = {
+          ...element,
+          casts
+        };
+        array[index] = element;
+        this.createAllVIdeos();
+      },
+      createAllVIdeos: function() {
+        this.allVideos = this.films.concat(this.series);
+        this.allVideos.sort(function (a,b) {
+          return b.popularity - a.popularity;
+        });
+      },
+      starRating: function(max_vote) {
+        for (var i = 0; i < max_vote; i++) {
           this.stars.push(i);
         }
       }

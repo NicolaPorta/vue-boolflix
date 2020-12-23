@@ -36,6 +36,10 @@ select {
   outline: none;
 }
 
+option {
+  text-transform: capitalize;
+}
+
 /* Full-Empty star Version */
 /* .rating {
   color: grey;
