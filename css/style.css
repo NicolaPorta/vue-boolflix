@@ -197,7 +197,7 @@ li > img {
   transition: all .5s;
 }
 
-li.search-list:hover > img {
+li:hover > img {
   opacity: 0;
 }
 
