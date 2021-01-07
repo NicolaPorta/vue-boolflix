@@ -4,19 +4,24 @@ var app = new Vue(
     data: {
       apiId: "12d47eadb7bade3dfdef75db545e889f",
       searchInput: "",
-      films:[],
-      series:[],
-      allVideos:[],
-      genres:[],
-      selected:"all",
-      stars: []
-      // data CHANGE PAGE
-      // sources:"",
-      // change: 1,
+      films: [],
+      series: [],
+      allVideos: [],
+      genres: [],
+      selected: "all",
+      mostPopular: []
     },
     mounted: function() {
+      axios.get("https://api.themoviedb.org/3/discover/movie", {
+        params: {
+          api_key: this.apiId,
+          language: "it-IT",
+        }
+      }).then(
+        (response) => {
+            this.mostPopular = response.data.results;
+        });
       this.getGenreList();
-      this.starRating(5);
     },
     methods: {
       searchVideo: function() {
@@ -51,8 +56,7 @@ var app = new Vue(
           params: {
             api_key: this.apiId,
             query: this.searchInput,
-            language: "it-IT",
-            // page: this.change
+            language: "it-IT"
           }
         }).then(
           (response) => {
@@ -166,11 +170,6 @@ var app = new Vue(
           return b.popularity - a.popularity;
         });
       },
-      starRating: function(max_vote) {
-        for (var i = 0; i < max_vote; i++) {
-          this.stars.push(i);
-        }
-      },
       flags: function(element) {
         switch(element.original_language) {
           case 'en':
@@ -186,19 +185,6 @@ var app = new Vue(
             return 0;
         }
       }
-    },
-
-    // CHANGE PAGE
-    // changePage: function() {
-    //   this.ajaxCall();
-    // },
-    // prevPage: function() {
-    //   this.change--;
-    //   this.ajaxCall();
-    // },
-    // nextPage: function() {
-    //   this.change++;
-    //   this.ajaxCall();
-    // },
+    }
   }
 );
